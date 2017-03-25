@@ -1,6 +1,6 @@
 #!/bin/bash
 git add .
-echo -n "commit message:"
+echo "commit message:"
 read
 git commit -m $"$REPLY"
 git pull origin master
