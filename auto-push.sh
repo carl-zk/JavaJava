@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 git add .
-echo "commit info:"
-read info
-git commit -m $info
+echo -n "commit message:"
+read
+git commit -m $"REPLY = '$REPLY'"
 git pull origin master
 git push origin master
