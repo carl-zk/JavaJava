@@ -1,7 +1,6 @@
-package chapter09.practice.jdbc;
+package chapter09.jdbc;
 
 import java.io.*;
-import java.net.URL;
 import java.sql.*;
 import java.util.Properties;
 
@@ -18,10 +17,10 @@ public class FirstTry {
             init(properties, "db.properties");
             // 1.加载驱动
             Class.forName(properties.getProperty("driver"));
-            // 建立连接
+            // 2.建立连接
             conn = DriverManager.getConnection(properties.getProperty("url"),
                     properties.getProperty("username"), properties.getProperty("password"));
-            // 创建statement
+            // 3.创建statement
             stmt = conn.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM User");
             while (resultSet.next()) {
@@ -45,8 +44,9 @@ public class FirstTry {
     private static void init(Properties properties, String fileName) throws Exception {
         InputStream input = null;
         try {
-            URL url = FirstTry.class.getClassLoader().getResource(fileName);
-            input = new FileInputStream(url.getPath());
+            //URL url = FirstTry.class.getClassLoader().getResource(fileName);
+            //input = new FileInputStream(url.getPath());
+            input = FirstTry.class.getClassLoader().getResourceAsStream(fileName);
             properties.load(input);
         } finally {
             if (input != null) {
