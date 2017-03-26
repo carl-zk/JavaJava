@@ -1,7 +1,5 @@
 package utils.sort;
 
-import utils.common.Queue;
-
 /**
  * Created by hero on 17-3-25.
  * 2路归并排序（非递归）
