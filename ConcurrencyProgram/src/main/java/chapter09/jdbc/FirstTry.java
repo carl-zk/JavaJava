@@ -6,12 +6,15 @@ import java.util.Properties;
 
 /**
  * Created by hero on 17-3-26.
+ * jdbc连接示例
+ * Properties使用示例
  */
 public class FirstTry {
 
     public static void main(String[] args) throws SQLException {
         Connection conn = null;
         Statement stmt = null;
+        ResultSet resultSet = null;
         try {
             Properties properties = new Properties();
             init(properties, "db.properties");
@@ -22,16 +25,18 @@ public class FirstTry {
                     properties.getProperty("username"), properties.getProperty("password"));
             // 3.创建statement
             stmt = conn.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM User");
+            resultSet = stmt.executeQuery("SELECT * FROM User");
             while (resultSet.next()) {
                 String id = resultSet.getString(1);
                 String name = resultSet.getString(2);
                 System.out.println(id + ", " + name);
             }
-            resultSet.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
+            if (resultSet != null) {
+                resultSet.close();
+            }
             if (stmt != null) {
                 stmt.close();
             }
