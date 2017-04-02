@@ -8,6 +8,11 @@
     <name>learn Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+        <dependency>
+            <groupId>moc.oreh</groupId>
+            <artifactId>event-bus</artifactId>
+            <version>1.0</version>
+        </dependency>
         <!-- springframework -->
         <dependency>
             <groupId>org.springframework</groupId>

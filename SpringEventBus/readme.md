@@ -10,7 +10,7 @@ spring-framework本身提供一套事件的发布/订阅机制,官方文档中�
 我有些难以消化.就是因为它太大而全,所以不太适合初级学习,我找到一个android版的EventBus框架,文档介绍和代码比较容易理
 解,可以从这里先阅读理解一下.[EventBus源码解析](http://a.codekk.com/detail/Android/Trinea/EventBus%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90)
 
-Publish/Subscribe支持同步,异步,事务,优先级.
+Publish/Subscribe支持同步,异步,事务,优先级,返回异步结果
 
 ## 目标
 写一个简单实用EventBus框架.
@@ -28,23 +28,23 @@ Publish/Subscribe支持同步,异步,事务,优先级.
 如果在xml中配置类名为`applicationEventMulticaster`的bean,则context就用这个,否则就new一个SimpleApplicationEventMulticaster
 设置给context.new出来的这个taskExecutor是null,所以
 ```java
-	public void multicastEvent(final ApplicationEvent event, ResolvableType eventType) {
-		ResolvableType type = (eventType != null ? eventType : resolveDefaultEventType(event));
-		for (final ApplicationListener<?> listener : getApplicationListeners(event, type)) {
-			Executor executor = getTaskExecutor();
-			if (executor != null) {
-				executor.execute(new Runnable() {
-					@Override
-					public void run() {
-						invokeListener(listener, event);
-					}
-				});
-			}
-			else {
-				invokeListener(listener, event);
-			}
+public void multicastEvent(final ApplicationEvent event, ResolvableType eventType) {
+	ResolvableType type = (eventType != null ? eventType : resolveDefaultEventType(event));
+	for (final ApplicationListener<?> listener : getApplicationListeners(event, type)) {
+		Executor executor = getTaskExecutor();
+		if (executor != null) {
+			executor.execute(new Runnable() {
+				@Override
+				public void run() {
+					invokeListener(listener, event);
+				}
+			});
+		}
+		else {
+			invokeListener(listener, event);
 		}
 	}
+}
 ```
 最终SimpleApplicationEventMulticaster发布一个event时,直接调用invokeListener(listener, event)方法,listener
 就会被叫来处理这个event,此时接收者和发布者在同一个线程中,所以默认的是同步处理.

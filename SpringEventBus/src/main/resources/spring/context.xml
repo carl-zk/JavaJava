@@ -11,6 +11,11 @@
     </bean>
 
     <bean id="register" class="common.Register"/>
+    <bean class="moc.oreh.eventbus.EventBus" destroy-method="destroy">
+        <constructor-arg name="corePoolSize" value="8"/>
+        <constructor-arg name="maximumPoolSize" value="32"/>
+        <constructor-arg name="keepAliveTime" value="300"/>
+    </bean>
     <bean id="postProcessor" class="common.DIYBeanPostProcessor"/>
     <bean class="service.events.EmailService">
         <property name="blackList">

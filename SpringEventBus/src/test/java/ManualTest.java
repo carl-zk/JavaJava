@@ -15,8 +15,5 @@ public class ManualTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring/context.xml");
         TakePlane service = Register.getBean(TakePlane.class);
         service.check();
-
-        Log log = LogFactory.getLog(ManualTest.class);
-        log.info("hello log ");
     }
 }
