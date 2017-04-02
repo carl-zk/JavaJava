@@ -49,8 +49,6 @@ public class FirstTry {
     private static void init(Properties properties, String fileName) throws Exception {
         InputStream input = null;
         try {
-            //URL url = FirstTry.class.getClassLoader().getResource(fileName);
-            //input = new FileInputStream(url.getPath());
             input = FirstTry.class.getClassLoader().getResourceAsStream(fileName);
             properties.load(input);
         } finally {

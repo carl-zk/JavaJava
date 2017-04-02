@@ -13,11 +13,18 @@ public class ConnectionFactory {
 
     static {
         InputStream is = null;
-        try{
+        try {
             is = ConnectionFactory.class.getClassLoader().getResourceAsStream("db.properties");
             configs.load(is);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                }
+            }
         }
     }
 

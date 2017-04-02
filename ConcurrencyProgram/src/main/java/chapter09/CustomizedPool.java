@@ -68,5 +68,6 @@ public class CustomizedPool extends ThreadPoolExecutor {
 
     @Override
     protected void terminated() {
+        System.out.println("terminated");
     }
 }
