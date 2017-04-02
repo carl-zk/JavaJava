@@ -4,10 +4,15 @@
     <groupId>moc.oreh</groupId>
     <artifactId>event-bus</artifactId>
     <packaging>jar</packaging>
-    <version>0.1</version>
-    <name>event-bus Maven Webapp</name>
-    <url>http://maven.apache.org</url>
+    <version>1.0</version>
+    <name>EventBus</name>
+
     <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.3.6.RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

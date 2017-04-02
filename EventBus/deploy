@@ -1,0 +1,4 @@
+#/usr/bin/bash
+mvn install:install-file -Dfile=/home/hero/workspace/git/JavaJava/EventBus/target/event-bus.jar
+
+
