@@ -1,4 +1,4 @@
-> 这个是我自己写的EventBus, Spring自带的Publish/Subscribe太复杂,索性自己写个简单的,然后慢慢填功能.
+> 这个是我自己写的EventBus, Spring自带的Publish/Subscribe太复杂,索性自己写个简单的,然后慢慢添功能.
 这样也便于理解实现机制.
 
 ## EventBus tutorial
@@ -83,5 +83,5 @@ public class MyController {
 
 
 和其它publish/subscribe框架相比,我这个应该是最容易理解的.如果需要事务,优先级等功能,可以参考spring源码进行修改.
-我会一直丰富它的功能,等把它用到以后的工作中是最好的.
+我会一直丰富它的功能,能把它用到以后的工作中是最好的.
 

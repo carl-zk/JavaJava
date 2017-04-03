@@ -1,4 +1,4 @@
-package moc.oreh.eventbus;
+package moc.oreh.eventbus.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -11,5 +11,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Subscribe {
-
+    SubscribeMode mode() default SubscribeMode.ASYNC;
 }
