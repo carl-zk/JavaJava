@@ -5,9 +5,13 @@ import org.springframework.stereotype.Component;
 /**
  * Created by hero on 17-4-2.
  */
-public class User {
+public class User extends Entity {
+    private static final long serialVersionUID = 7313375866517409793L;
     private String name;
     private int age;
+
+    public User() {
+    }
 
     public User(String name, int age) {
         this.name = name;

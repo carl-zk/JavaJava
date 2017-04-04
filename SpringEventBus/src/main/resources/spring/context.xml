@@ -2,7 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="byName">
+
+    <import resource="common.xml"/>
 
     <bean id="applicationEventMulticaster" class="org.springframework.context.event.SimpleApplicationEventMulticaster">
         <property name="taskExecutor">
@@ -11,7 +15,7 @@
     </bean>
 
     <bean id="register" class="common.Register"/>
-    <bean class="moc.oreh.eventbus.EventBus" destroy-method="destroy">
+    <bean id="springEventBus" class="moc.oreh.eventbus.spring.SpringEventBus" destroy-method="destroy">
         <constructor-arg name="corePoolSize" value="8"/>
         <constructor-arg name="maximumPoolSize" value="32"/>
         <constructor-arg name="keepAliveTime" value="300"/>
@@ -26,5 +30,9 @@
         </property>
     </bean>
 
-    <context:component-scan base-package="service"/>
+    <bean id="daoService" class="service.jdbc.DaoService"/>
+    <bean id="takePlane" class="service.TakePlane"/>
+    <bean id="onlineEventHandler" class="service.myeventbus.OnlineEventHandler" autowire="byName"/>
+    <bean id="blackListNotifier" class="service.events.BlackListNotifier"/>
+    <!--<context:component-scan base-package="service"/>-->
 </beans>

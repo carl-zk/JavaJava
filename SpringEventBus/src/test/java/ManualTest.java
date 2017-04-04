@@ -10,6 +10,12 @@ import service.TakePlane;
  * Created by hero on 17-4-2.
  */
 public class ManualTest {
+
+
+    public void fun(){
+        System.out.println("world");
+    }
+
     @Test
     public void test() {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring/context.xml");
