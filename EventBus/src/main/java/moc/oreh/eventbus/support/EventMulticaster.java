@@ -5,16 +5,18 @@ import java.util.Map;
 import java.util.concurrent.*;
 
 /**
+ * publish helper
+ * <p>
  * Created by hero on 17-4-3.
  */
-public class EventMulticaster {
-    private Map<Class, LinkedList<Subscriber>> retrieverCache = new ConcurrentHashMap<Class, LinkedList<Subscriber>>(64);
-    private ThreadPoolExecutor syncTaskExecutor = new ThreadPoolExecutor(1, 1, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(100));
-    private ThreadPoolExecutor asyncTaskExecutor;
+public abstract class EventMulticaster {
+    private Map<Class, LinkedList<Subscriber>> retrieverCache = new ConcurrentHashMap<>(64);
+    protected ThreadPoolExecutor syncTaskExecutor = new ThreadPoolExecutor(1, 1, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
+    protected ThreadPoolExecutor asyncTaskExecutor;
 
     public EventMulticaster() {
         // SubscribeMode.ASYNC
-        asyncTaskExecutor = new ThreadPoolExecutor(16, 32, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(100));
+        asyncTaskExecutor = new ThreadPoolExecutor(16, 32, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
     }
 
     public EventMulticaster(int corePoolSize, int maximumPoolSize, long keepAliveTime) {
@@ -23,27 +25,15 @@ public class EventMulticaster {
                 keepAliveTime, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
     }
 
-    public void multicastEvent(EventTarget eventTarget) {
-        Class eventType = eventTarget.getEvent().getClass();
+    public void multicastEvent(Object event) {
+        Class eventType = event.getClass();
         LinkedList<Subscriber> subscribers = retrieverCache.get(eventType);
-        invokeSubscribers(eventTarget, subscribers);
+        if (subscribers == null)
+            return;
+        invokeSubscribers(event, subscribers);
     }
 
-    private void invokeSubscribers(EventTarget eventTarget, LinkedList<Subscriber> subscribers) {
-        for (Subscriber subscriber : subscribers) {
-            switch (subscriber.getMode()) {
-                case ASYNC:
-                    asyncTaskExecutor.execute(new EventTask(subscriber, eventTarget));
-                    break;
-                case SYNC:
-                    syncTaskExecutor.execute(new EventTask(subscriber, eventTarget));
-                    break;
-                case FOLLOW:
-                    new EventTask(subscriber, eventTarget).run();
-                    break;
-            }
-        }
-    }
+    protected abstract void invokeSubscribers(Object event, LinkedList<Subscriber> subscribers);
 
     public LinkedList<Subscriber> getSubscribers(Class eventType) {
         return retrieverCache.get(eventType);
@@ -53,7 +43,7 @@ public class EventMulticaster {
         retrieverCache.put(eventType, subscribers);
     }
 
-    public void destroy(){
+    public void destroy() {
         retrieverCache = null;
         syncTaskExecutor.shutdown();
         asyncTaskExecutor.shutdown();

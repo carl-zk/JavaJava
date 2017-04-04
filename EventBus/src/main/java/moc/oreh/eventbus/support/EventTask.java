@@ -1,35 +1,27 @@
 package moc.oreh.eventbus.support;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created by hero on 17-4-3.
  */
 public class EventTask implements Runnable {
-    private Log log = LogFactory.getLog(EventTask.class);
+    private Logger logger = LogManager.getLogger(EventTask.class);
 
     private final Subscriber subscriber;
-    private final EventTarget eventTarget;
+    private final Object event;
 
     public void run() {
         try {
-            subscriber.onEvent(eventTarget);
-        } catch (Exception e) {
-            log.error("[EventTask executed failed] ", e);
+            subscriber.onEvent(event);
+        } catch (Exception ex) {
+            logger.error("[EventTask failed]", ex);
         }
     }
 
-    public EventTask(Subscriber subscriber, EventTarget eventTarget) {
+    public EventTask(Subscriber subscriber, Object event) {
         this.subscriber = subscriber;
-        this.eventTarget = eventTarget;
-    }
-
-    public Subscriber getSubscriber() {
-        return subscriber;
-    }
-
-    public EventTarget getEventTarget() {
-        return eventTarget;
+        this.event = event;
     }
 }

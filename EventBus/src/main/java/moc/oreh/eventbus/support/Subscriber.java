@@ -2,6 +2,7 @@ package moc.oreh.eventbus.support;
 
 import moc.oreh.eventbus.annotation.SubscribeMode;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -10,49 +11,19 @@ import java.lang.reflect.Method;
 public class Subscriber {
     private Object subscriber;
     private Method handle;
-    private Class EventType;
     private SubscribeMode mode;
 
-    public Subscriber(Object subscriber, Method handle, Class eventType, SubscribeMode mode) {
+    public Subscriber(Object subscriber, Method handle, SubscribeMode mode) {
         this.subscriber = subscriber;
         this.handle = handle;
-        this.EventType = eventType;
         this.mode = mode;
-    }
-
-    public Object getSubscriber() {
-        return subscriber;
-    }
-
-    public void setSubscriber(Object subscriber) {
-        this.subscriber = subscriber;
-    }
-
-    public Method getHandle() {
-        return handle;
-    }
-
-    public void setHandle(Method handle) {
-        this.handle = handle;
-    }
-
-    public Class getEventType() {
-        return EventType;
-    }
-
-    public void setEventType(Class eventType) {
-        EventType = eventType;
     }
 
     public SubscribeMode getMode() {
         return mode;
     }
 
-    public void setMode(SubscribeMode mode) {
-        this.mode = mode;
-    }
-
-    public void onEvent(EventTarget eventTarget) throws Exception {
-        handle.invoke(subscriber, eventTarget.getEvent());
+    public void onEvent(Object event) throws InvocationTargetException, IllegalAccessException {
+        handle.invoke(subscriber, event);
     }
 }
