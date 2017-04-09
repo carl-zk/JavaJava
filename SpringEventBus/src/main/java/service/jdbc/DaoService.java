@@ -21,11 +21,6 @@ public class DaoService {
     }
 
     public User getUser(String userId) {
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return userDao.get(userId);
     }
 

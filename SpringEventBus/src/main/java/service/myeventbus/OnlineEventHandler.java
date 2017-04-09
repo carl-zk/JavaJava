@@ -24,46 +24,36 @@ public class OnlineEventHandler {
     private UserDao userDao;
 
     @Transactional
-    @Subscribe(mode = SubscribeMode.ASYNC)
+    @Subscribe(priority = -1)
     public void fun(OnlineEvent e) {
-        System.out.println("follow you");
+        System.out.println("fun ...");
         userDao.save(new User("jj", 23));
         try {
             int t = 9;
-            t /= 0;
+             t /= 0;
         } catch (Exception ex) {
             throw new RuntimeException();
         }
     }
 
-    @Subscribe(mode = SubscribeMode.SYNC)
+    @Subscribe(mode = SubscribeMode.BACKGROUND, priority = 2)
     @Transactional(timeout = 1)
     public void handle(OnlineEvent event) throws InterruptedException {
-        System.out.print("get in handle: ");
-/*        TransactionSynchronizationManager.setCurrentTransactionIsolationLevel(TransactionDefinition.PROPAGATION_REQUIRED);
-        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
-            @Override
-            public void afterCommit() {
-                System.out.println("after commit");
-            }
-
-            @Override
-            public void beforeCommit(boolean readOnly) {
-                try {
-                    TimeUnit.SECONDS.sleep(3);
-                    System.out.println("i'm here ");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });*/
+        // TimeUnit.SECONDS.sleep(3);  // timeout
         daoService.getUser("1");
+        TimeUnit.SECONDS.sleep(3);  // 不会timeout
+
         System.out.print(TransactionSynchronizationManager.getCurrentTransactionIsolationLevel());
         System.out.println(", " + TransactionSynchronizationManager.isSynchronizationActive() + ", " +
                 TransactionSynchronizationManager.isActualTransactionActive());
-        TimeUnit.SECONDS.sleep(1);
+
         System.out.print("handle event: " + event.getClass().getName() + " ---> ");
         System.out.println(event.getUser());
+    }
+
+    @Subscribe
+    public void hand(HelloEvent event){
+        System.out.println("hello hello");
     }
 
     public void setDaoService(DaoService daoService) {
