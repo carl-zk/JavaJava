@@ -71,7 +71,8 @@ public abstract class DBUtil {
             System.setProperty("db.url", props.getProperty("db.url"));
             System.setProperty("db.user", props.getProperty("db.user"));
             System.setProperty("db.password", props.getProperty("db.password"));
-            initDriver(props.getProperty("db.driver"));
+            if (props.getProperty("db.driver") != null)
+                initDriver(props.getProperty("db.driver"));
             initFactory(props.getProperty("db.factory"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,20 +88,16 @@ public abstract class DBUtil {
     }
 
     private static void initDriver(String driver) {
-        driver = StringUtil.assertNotBlank(driver).trim();
+        driver = StringUtil.requireNotBlank(driver).trim();
         try {
-            Class.forName(driver).newInstance();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
+            Class.forName(driver);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     private static void initFactory(String factory) {
-        factory = StringUtil.assertNotBlank(factory).trim();
+        factory = StringUtil.requireNotBlank(factory).trim();
         try {
             iFactory = (IFactory) Class.forName(factory).newInstance();
         } catch (IllegalAccessException e) {
