@@ -1,0 +1,221 @@
+Classfile /home/hero/workspace/JavaJava/Cookie/src/test/IncreaseT.class
+  Last modified Aug 16, 2017; size 1285 bytes
+  MD5 checksum ef0fef712ec2df01cec57cbaed75a90e
+  Compiled from "IncreaseT.java"
+public class IncreaseT
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #15.#47        // java/lang/Object."<init>":()V
+   #2 = Fieldref           #14.#48        // IncreaseT.t:I
+   #3 = Class              #49            // java/util/concurrent/CountDownLatch
+   #4 = Methodref          #3.#50         // java/util/concurrent/CountDownLatch."<init>":(I)V
+   #5 = Class              #51            // java/lang/Thread
+   #6 = Class              #52            // IncreaseT$1R
+   #7 = Methodref          #6.#53         // IncreaseT$1R."<init>":(Ljava/util/concurrent/CountDownLatch;)V
+   #8 = Methodref          #5.#54         // java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+   #9 = Methodref          #5.#55         // java/lang/Thread.start:()V
+  #10 = Methodref          #3.#56         // java/util/concurrent/CountDownLatch.countDown:()V
+  #11 = Methodref          #5.#57         // java/lang/Thread.join:()V
+  #12 = Fieldref           #58.#59        // java/lang/System.out:Ljava/io/PrintStream;
+  #13 = Methodref          #60.#61        // java/io/PrintStream.println:(I)V
+  #14 = Class              #62            // IncreaseT
+  #15 = Class              #63            // java/lang/Object
+  #16 = Utf8               R
+  #17 = Utf8               InnerClasses
+  #18 = Utf8               t
+  #19 = Utf8               I
+  #20 = Utf8               <init>
+  #21 = Utf8               ()V
+  #22 = Utf8               Code
+  #23 = Utf8               LineNumberTable
+  #24 = Utf8               LocalVariableTable
+  #25 = Utf8               this
+  #26 = Utf8               LIncreaseT;
+  #27 = Utf8               add
+  #28 = Utf8               main
+  #29 = Utf8               ([Ljava/lang/String;)V
+  #30 = Utf8               i
+  #31 = Utf8               args
+  #32 = Utf8               [Ljava/lang/String;
+  #33 = Utf8               max
+  #34 = Utf8               d
+  #35 = Utf8               Ljava/util/concurrent/CountDownLatch;
+  #36 = Utf8               ts
+  #37 = Utf8               [Ljava/lang/Thread;
+  #38 = Utf8               StackMapTable
+  #39 = Class              #32            // "[Ljava/lang/String;"
+  #40 = Class              #49            // java/util/concurrent/CountDownLatch
+  #41 = Class              #37            // "[Ljava/lang/Thread;"
+  #42 = Utf8               Exceptions
+  #43 = Class              #64            // java/lang/InterruptedException
+  #44 = Utf8               <clinit>
+  #45 = Utf8               SourceFile
+  #46 = Utf8               IncreaseT.java
+  #47 = NameAndType        #20:#21        // "<init>":()V
+  #48 = NameAndType        #18:#19        // t:I
+  #49 = Utf8               java/util/concurrent/CountDownLatch
+  #50 = NameAndType        #20:#65        // "<init>":(I)V
+  #51 = Utf8               java/lang/Thread
+  #52 = Utf8               IncreaseT$1R
+  #53 = NameAndType        #20:#66        // "<init>":(Ljava/util/concurrent/CountDownLatch;)V
+  #54 = NameAndType        #20:#67        // "<init>":(Ljava/lang/Runnable;)V
+  #55 = NameAndType        #68:#21        // start:()V
+  #56 = NameAndType        #69:#21        // countDown:()V
+  #57 = NameAndType        #70:#21        // join:()V
+  #58 = Class              #71            // java/lang/System
+  #59 = NameAndType        #72:#73        // out:Ljava/io/PrintStream;
+  #60 = Class              #74            // java/io/PrintStream
+  #61 = NameAndType        #75:#65        // println:(I)V
+  #62 = Utf8               IncreaseT
+  #63 = Utf8               java/lang/Object
+  #64 = Utf8               java/lang/InterruptedException
+  #65 = Utf8               (I)V
+  #66 = Utf8               (Ljava/util/concurrent/CountDownLatch;)V
+  #67 = Utf8               (Ljava/lang/Runnable;)V
+  #68 = Utf8               start
+  #69 = Utf8               countDown
+  #70 = Utf8               join
+  #71 = Utf8               java/lang/System
+  #72 = Utf8               out
+  #73 = Utf8               Ljava/io/PrintStream;
+  #74 = Utf8               java/io/PrintStream
+  #75 = Utf8               println
+{
+  public static int t;
+    descriptor: I
+    flags: ACC_PUBLIC, ACC_STATIC
+
+  public IncreaseT();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 6: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   LIncreaseT;
+
+  public static synchronized void add();
+    descriptor: ()V
+    flags: ACC_PUBLIC, ACC_STATIC, ACC_SYNCHRONIZED
+    Code:
+      stack=2, locals=0, args_size=0
+         0: getstatic     #2                  // Field t:I
+         3: iconst_1
+         4: iadd
+         5: putstatic     #2                  // Field t:I
+         8: return
+      LineNumberTable:
+        line 10: 0
+        line 11: 8
+
+  public static void main(java.lang.String[]) throws java.lang.InterruptedException;
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=7, locals=5, args_size=1
+         0: bipush        64
+         2: istore_1
+         3: new           #3                  // class java/util/concurrent/CountDownLatch
+         6: dup
+         7: iconst_1
+         8: invokespecial #4                  // Method java/util/concurrent/CountDownLatch."<init>":(I)V
+        11: astore_2
+        12: iload_1
+        13: anewarray     #5                  // class java/lang/Thread
+        16: astore_3
+        17: iconst_0
+        18: istore        4
+        20: iload         4
+        22: iload_1
+        23: if_icmpge     58
+        26: aload_3
+        27: iload         4
+        29: new           #5                  // class java/lang/Thread
+        32: dup
+        33: new           #6                  // class IncreaseT$1R
+        36: dup
+        37: aload_2
+        38: invokespecial #7                  // Method IncreaseT$1R."<init>":(Ljava/util/concurrent/CountDownLatch;)V
+        41: invokespecial #8                  // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+        44: aastore
+        45: aload_3
+        46: iload         4
+        48: aaload
+        49: invokevirtual #9                  // Method java/lang/Thread.start:()V
+        52: iinc          4, 1
+        55: goto          20
+        58: aload_2
+        59: invokevirtual #10                 // Method java/util/concurrent/CountDownLatch.countDown:()V
+        62: iconst_0
+        63: istore        4
+        65: iload         4
+        67: iload_1
+        68: if_icmpge     84
+        71: aload_3
+        72: iload         4
+        74: aaload
+        75: invokevirtual #11                 // Method java/lang/Thread.join:()V
+        78: iinc          4, 1
+        81: goto          65
+        84: getstatic     #12                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        87: getstatic     #2                  // Field t:I
+        90: invokevirtual #13                 // Method java/io/PrintStream.println:(I)V
+        93: return
+      LineNumberTable:
+        line 14: 0
+        line 15: 3
+        line 33: 12
+        line 34: 17
+        line 35: 26
+        line 36: 45
+        line 34: 52
+        line 39: 58
+        line 40: 62
+        line 41: 71
+        line 40: 78
+        line 42: 84
+        line 43: 93
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      38     4     i   I
+           65      19     4     i   I
+            0      94     0  args   [Ljava/lang/String;
+            3      91     1   max   I
+           12      82     2     d   Ljava/util/concurrent/CountDownLatch;
+           17      77     3    ts   [Ljava/lang/Thread;
+      StackMapTable: number_of_entries = 4
+        frame_type = 255 /* full_frame */
+          offset_delta = 20
+          locals = [ class "[Ljava/lang/String;", int, class java/util/concurrent/CountDownLatch, class "[Ljava/lang/Thread;", int ]
+          stack = []
+        frame_type = 250 /* chop */
+          offset_delta = 37
+        frame_type = 252 /* append */
+          offset_delta = 6
+          locals = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 18
+    Exceptions:
+      throws java.lang.InterruptedException
+
+  static {};
+    descriptor: ()V
+    flags: ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: iconst_0
+         1: putstatic     #2                  // Field t:I
+         4: return
+      LineNumberTable:
+        line 7: 0
+}
+SourceFile: "IncreaseT.java"
+InnerClasses:
+     #16= #6; //R=class IncreaseT$1R

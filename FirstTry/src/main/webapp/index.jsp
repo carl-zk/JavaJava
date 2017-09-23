@@ -9,7 +9,7 @@
     <%--<input type="submit"/>--%>
 <%--</form>--%>
 <hr/>
-<form method="post" action="" >
+<form method="get" action="/example/user?id=123" >
     <input type="text" name="name" /> <br />
     <input type="password" name="password"/><br/>
     <input type="submit" />

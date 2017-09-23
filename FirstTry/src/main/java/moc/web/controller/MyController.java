@@ -1,11 +1,8 @@
 package moc.web.controller;
 
-import com.sun.deploy.net.HttpResponse;
 import moc.identity.User;
 import moc.identity.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by hero on 16-6-1.
@@ -36,6 +30,10 @@ public class MyController {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     @ResponseBody
     public User getUser(String id,  HttpServletRequest request, HttpServletResponse response) {
+        String s = (String) request.getAttribute("a");
+        System.out.println(s==null);
+        s = request.getParameter("jj");
+        System.out.println(s==null);
         User user = userRepository.get();
         return user;
     }

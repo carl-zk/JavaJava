@@ -1,0 +1,243 @@
+Classfile /home/hero/workspace/JavaJava/Cookie/src/test/DoubleIfSingleton.class
+  Last modified Aug 16, 2017; size 1498 bytes
+  MD5 checksum 94afabe5a6904010be70058a42588fae
+  Compiled from "DoubleIfSingleton.java"
+public class DoubleIfSingleton
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Class              #52            // java/util/concurrent/CountDownLatch
+   #2 = Methodref          #1.#53         // java/util/concurrent/CountDownLatch."<init>":(I)V
+   #3 = Class              #54            // java/lang/Thread
+   #4 = Class              #55            // DoubleIfSingleton$1R
+   #5 = Methodref          #4.#56         // DoubleIfSingleton$1R."<init>":(Ljava/util/concurrent/CountDownLatch;)V
+   #6 = Methodref          #3.#57         // java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+   #7 = Methodref          #3.#58         // java/lang/Thread.start:()V
+   #8 = Methodref          #1.#59         // java/util/concurrent/CountDownLatch.countDown:()V
+   #9 = Methodref          #3.#60         // java/lang/Thread.join:()V
+  #10 = Fieldref           #11.#61        // DoubleIfSingleton.ins:LDoubleIfSingleton;
+  #11 = Class              #62            // DoubleIfSingleton
+  #12 = Methodref          #11.#63        // DoubleIfSingleton."<init>":()V
+  #13 = Methodref          #17.#63        // java/lang/Object."<init>":()V
+  #14 = Fieldref           #64.#65        // java/lang/System.out:Ljava/io/PrintStream;
+  #15 = Methodref          #17.#66        // java/lang/Object.hashCode:()I
+  #16 = Methodref          #67.#68        // java/io/PrintStream.println:(I)V
+  #17 = Class              #69            // java/lang/Object
+  #18 = Utf8               R
+  #19 = Utf8               InnerClasses
+  #20 = Utf8               ins
+  #21 = Utf8               LDoubleIfSingleton;
+  #22 = Utf8               main
+  #23 = Utf8               ([Ljava/lang/String;)V
+  #24 = Utf8               Code
+  #25 = Utf8               LineNumberTable
+  #26 = Utf8               LocalVariableTable
+  #27 = Utf8               i
+  #28 = Utf8               I
+  #29 = Utf8               args
+  #30 = Utf8               [Ljava/lang/String;
+  #31 = Utf8               max
+  #32 = Utf8               d
+  #33 = Utf8               Ljava/util/concurrent/CountDownLatch;
+  #34 = Utf8               ts
+  #35 = Utf8               [Ljava/lang/Thread;
+  #36 = Utf8               StackMapTable
+  #37 = Class              #30            // "[Ljava/lang/String;"
+  #38 = Class              #52            // java/util/concurrent/CountDownLatch
+  #39 = Class              #35            // "[Ljava/lang/Thread;"
+  #40 = Utf8               Exceptions
+  #41 = Class              #70            // java/lang/InterruptedException
+  #42 = Utf8               getIns
+  #43 = Utf8               ()LDoubleIfSingleton;
+  #44 = Class              #69            // java/lang/Object
+  #45 = Class              #71            // java/lang/Throwable
+  #46 = Utf8               <init>
+  #47 = Utf8               ()V
+  #48 = Utf8               this
+  #49 = Utf8               <clinit>
+  #50 = Utf8               SourceFile
+  #51 = Utf8               DoubleIfSingleton.java
+  #52 = Utf8               java/util/concurrent/CountDownLatch
+  #53 = NameAndType        #46:#72        // "<init>":(I)V
+  #54 = Utf8               java/lang/Thread
+  #55 = Utf8               DoubleIfSingleton$1R
+  #56 = NameAndType        #46:#73        // "<init>":(Ljava/util/concurrent/CountDownLatch;)V
+  #57 = NameAndType        #46:#74        // "<init>":(Ljava/lang/Runnable;)V
+  #58 = NameAndType        #75:#47        // start:()V
+  #59 = NameAndType        #76:#47        // countDown:()V
+  #60 = NameAndType        #77:#47        // join:()V
+  #61 = NameAndType        #20:#21        // ins:LDoubleIfSingleton;
+  #62 = Utf8               DoubleIfSingleton
+  #63 = NameAndType        #46:#47        // "<init>":()V
+  #64 = Class              #78            // java/lang/System
+  #65 = NameAndType        #79:#80        // out:Ljava/io/PrintStream;
+  #66 = NameAndType        #81:#82        // hashCode:()I
+  #67 = Class              #83            // java/io/PrintStream
+  #68 = NameAndType        #84:#72        // println:(I)V
+  #69 = Utf8               java/lang/Object
+  #70 = Utf8               java/lang/InterruptedException
+  #71 = Utf8               java/lang/Throwable
+  #72 = Utf8               (I)V
+  #73 = Utf8               (Ljava/util/concurrent/CountDownLatch;)V
+  #74 = Utf8               (Ljava/lang/Runnable;)V
+  #75 = Utf8               start
+  #76 = Utf8               countDown
+  #77 = Utf8               join
+  #78 = Utf8               java/lang/System
+  #79 = Utf8               out
+  #80 = Utf8               Ljava/io/PrintStream;
+  #81 = Utf8               hashCode
+  #82 = Utf8               ()I
+  #83 = Utf8               java/io/PrintStream
+  #84 = Utf8               println
+{
+  public static void main(java.lang.String[]) throws java.lang.InterruptedException;
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=7, locals=5, args_size=1
+         0: bipush        64
+         2: istore_1
+         3: new           #1                  // class java/util/concurrent/CountDownLatch
+         6: dup
+         7: iconst_1
+         8: invokespecial #2                  // Method java/util/concurrent/CountDownLatch."<init>":(I)V
+        11: astore_2
+        12: iload_1
+        13: anewarray     #3                  // class java/lang/Thread
+        16: astore_3
+        17: iconst_0
+        18: istore        4
+        20: iload         4
+        22: iload_1
+        23: if_icmpge     58
+        26: aload_3
+        27: iload         4
+        29: new           #3                  // class java/lang/Thread
+        32: dup
+        33: new           #4                  // class DoubleIfSingleton$1R
+        36: dup
+        37: aload_2
+        38: invokespecial #5                  // Method DoubleIfSingleton$1R."<init>":(Ljava/util/concurrent/CountDownLatch;)V
+        41: invokespecial #6                  // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+        44: aastore
+        45: aload_3
+        46: iload         4
+        48: aaload
+        49: invokevirtual #7                  // Method java/lang/Thread.start:()V
+        52: iinc          4, 1
+        55: goto          20
+        58: aload_2
+        59: invokevirtual #8                  // Method java/util/concurrent/CountDownLatch.countDown:()V
+        62: iconst_0
+        63: istore        4
+        65: iload         4
+        67: iload_1
+        68: if_icmpge     84
+        71: aload_3
+        72: iload         4
+        74: aaload
+        75: invokevirtual #9                  // Method java/lang/Thread.join:()V
+        78: iinc          4, 1
+        81: goto          65
+        84: return
+      LineNumberTable:
+        line 11: 0
+        line 12: 3
+        line 30: 12
+        line 31: 17
+        line 32: 26
+        line 33: 45
+        line 31: 52
+        line 36: 58
+        line 37: 62
+        line 38: 71
+        line 37: 78
+        line 39: 84
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      38     4     i   I
+           65      19     4     i   I
+            0      85     0  args   [Ljava/lang/String;
+            3      82     1   max   I
+           12      73     2     d   Ljava/util/concurrent/CountDownLatch;
+           17      68     3    ts   [Ljava/lang/Thread;
+      StackMapTable: number_of_entries = 4
+        frame_type = 255 /* full_frame */
+          offset_delta = 20
+          locals = [ class "[Ljava/lang/String;", int, class java/util/concurrent/CountDownLatch, class "[Ljava/lang/Thread;", int ]
+          stack = []
+        frame_type = 250 /* chop */
+          offset_delta = 37
+        frame_type = 252 /* append */
+          offset_delta = 6
+          locals = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 18
+    Exceptions:
+      throws java.lang.InterruptedException
+
+  public static DoubleIfSingleton getIns();
+    descriptor: ()LDoubleIfSingleton;
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=2, args_size=0
+         0: aconst_null
+         1: getstatic     #10                 // Field ins:LDoubleIfSingleton;
+         4: if_acmpne     39
+         7: ldc           #11                 // class DoubleIfSingleton
+         9: dup
+        10: astore_0
+        11: monitorenter
+        12: aconst_null
+        13: getstatic     #10                 // Field ins:LDoubleIfSingleton;
+        16: if_acmpne     29
+        19: new           #11                 // class DoubleIfSingleton
+        22: dup
+        23: invokespecial #12                 // Method "<init>":()V
+        26: putstatic     #10                 // Field ins:LDoubleIfSingleton;
+        29: aload_0
+        30: monitorexit
+        31: goto          39
+        34: astore_1
+        35: aload_0
+        36: monitorexit
+        37: aload_1
+        38: athrow
+        39: getstatic     #10                 // Field ins:LDoubleIfSingleton;
+        42: areturn
+      Exception table:
+         from    to  target type
+            12    31    34   any
+            34    37    34   any
+      LineNumberTable:
+        line 42: 0
+        line 43: 7
+        line 44: 12
+        line 45: 19
+        line 47: 29
+        line 49: 39
+      StackMapTable: number_of_entries = 3
+        frame_type = 252 /* append */
+          offset_delta = 29
+          locals = [ class java/lang/Object ]
+        frame_type = 68 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 4
+
+  static {};
+    descriptor: ()V
+    flags: ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: aconst_null
+         1: putstatic     #10                 // Field ins:LDoubleIfSingleton;
+         4: return
+      LineNumberTable:
+        line 8: 0
+}
+SourceFile: "DoubleIfSingleton.java"
+InnerClasses:
+     #18= #4; //R=class DoubleIfSingleton$1R

@@ -73,7 +73,7 @@ public abstract class DBUtil {
             System.setProperty("db.password", props.getProperty("db.password"));
             if (props.getProperty("db.driver") != null)
                 initDriver(props.getProperty("db.driver"));
-            initFactory(props.getProperty("db.factory"));
+           // initFactory(props.getProperty("db.factory"));
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
