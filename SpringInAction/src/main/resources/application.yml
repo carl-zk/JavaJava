@@ -8,9 +8,9 @@ spring:
   profiles: remote
 database:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://rm-uf60p6n00cmx1a4m4io.mysql.rds.aliyuncs.com:3306/nh-uat-x?useSSL=true
+    url: jdbc:mysql://:3306/nh-uat-x?useSSL=true
     username: root
-    password: Naked2018
+    password: 
     minSize: 1
     maxSize: 5
 ---
