@@ -10,7 +10,7 @@ database:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://:3306/nh-uat-x?useSSL=true
     username: root
-    password: 
+    password:
     minSize: 1
     maxSize: 5
 ---
