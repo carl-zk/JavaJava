@@ -10,8 +10,10 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 //apply plugin: 'spring-boot'
 
-group 'test.test'
-version '1.0-SNAPSHOT'
+build {
+    group 'test.test'
+    version '1.0-SNAPSHOT'
+}
 
 sourceCompatibility = 1.8
 

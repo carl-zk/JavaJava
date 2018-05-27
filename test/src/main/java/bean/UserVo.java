@@ -17,4 +17,5 @@ public class UserVo {
     private List<Skill> skills;
     private Set<Skill> set;
     private Map<Skill, Skill> map;
+    private String ext;
 }
