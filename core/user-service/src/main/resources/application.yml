@@ -1,0 +1,31 @@
+server:
+  port: 8010
+  compression:
+    enabled: true
+    min-response-size: 1
+spring:
+  application:
+    name: user-service
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    metadata-map:
+      zone: shanghai
+feign:
+  compression:
+    request:
+      min-request-size: 1
+logging:
+  level: debug
+
+app:
+  id: SampleApp
+apollo:
+  meta: localhost:8080
