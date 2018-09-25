@@ -105,4 +105,7 @@ Spring Framwork + Hibernate
 
 ## [spring-cloud](https://github.com/carl-zk/JavaJava/tree/master/core)
 
+## [一个标准的 spring-boot-web 项目](https://github.com/carl-zk/JavaJava/tree/master/web)
+
+
 

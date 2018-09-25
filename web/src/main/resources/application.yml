@@ -1,0 +1,13 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: web
+  jackson:
+    default-property-inclusion: non_null
+  timezone: Asia/Shanghai
+
+---
+spring:
+  profiles:
+    active: ut
