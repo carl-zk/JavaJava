@@ -1,0 +1,5 @@
+rootProject.name = 'spi-demo'
+include 'driver-api'
+include 'mysql-driver'
+include 'spi-app'
+
