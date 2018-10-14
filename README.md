@@ -3,6 +3,11 @@
 
 # MY BEST PRACTISE
 
+## IDEA Plugins
+[alibaba-p3c](https://github.com/alibaba/p3c/tree/master/idea-plugin)
+[sonarlint](https://plugins.jetbrains.com/plugin/7973-sonarlint)
+代码风格：google-code-style.xml
+
 ## IDEA + JRebel
 [JRebel](blank)支持热部署，使用方法：
 
@@ -20,6 +25,7 @@
 </pre>
 激活要先完成第一步的流程。
 因为是第一次用JRebel，所以先JRebel启动，然后第3步完成勾选，再重新启动JRebel。第二次就直接使用JRebel启动项目，无须勾选。
+
 ## [GO]()
 ### 使用内置Jetty容器启动web项目。
 pom.xml

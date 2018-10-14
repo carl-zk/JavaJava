@@ -1,0 +1,29 @@
+server:
+  port: 8090
+elasticsearch:
+  host: http://localhost:9200
+  register: true
+
+spring:
+  application:
+    name: search-demo
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mydb?autoReconnect=true&character_set_server=utf8mb4&useSSL=false
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      hibernate.format_sql: true
+      hibernate.search.autoregister_listeners: ${elasticsearch.register}
+      hibernate.search.default.indexmanager: elasticsearch
+      hibernate.search.default.elasticsearch.required_index_status: yellow
+      hibernate.search.default.elasticsearch.host: ${elasticsearch.host}
+      hibernate.search.default.elasticsearch.read_timeout: 1000
+      hibernate.search.default.elasticsearch.request_timeout: 1000
+      hibernate.search.default.elasticsearch.max_total_connection: 50
+    open-in-view: false
