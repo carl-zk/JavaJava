@@ -1,10 +1,9 @@
 package com.hero.web.controller;
 
 import com.hero.web.support.Result;
-import com.hero.web.vo.UserVo;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.hero.web.vo.UserVO;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -15,11 +14,21 @@ import java.time.LocalDateTime;
 @RequestMapping("/api")
 public class UserController {
 
-  @GetMapping("/v1/users")
-  public Result listUsers() {
-    UserVo userVo = new UserVo();
-    userVo.setName("小红");
-    userVo.setLastLoginAt(LocalDateTime.now());
-    return Result.success(userVo);
-  }
+    @GetMapping("/v1/users")
+    public Result listUsers() {
+        UserVO userVo = new UserVO();
+        userVo.setName("小红");
+        userVo.setLastLoginAt(LocalDateTime.now());
+        return Result.success(userVo);
+    }
+
+    @PostMapping("/v1/user")
+    public Result createUser(@RequestBody @Validated(UserVO.ValidationName.class) UserVO userVO) {
+        return Result.success(userVO);
+    }
+
+    @PutMapping("/v1/user")
+    public Result updateUser(@RequestBody @Validated(UserVO.ValidationId.class) UserVO userVO) {
+        return Result.success(userVO);
+    }
 }

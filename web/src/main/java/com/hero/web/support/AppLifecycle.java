@@ -25,12 +25,12 @@ public class AppLifecycle implements ServletContextListener {
     log.info("set system timezone to : {}", timezone);
     TimeZone.setDefault(TimeZone.getTimeZone(timezone));
 
-    log.info("-------------- event-service started --------------------");
+    log.info("-------------- app started --------------------");
   }
 
   @Override
   public void contextDestroyed(ServletContextEvent sce) {
 
-    log.info("--------------- event-service terminated ---------------------");
+    log.info("--------------- app terminated ---------------------");
   }
 }
