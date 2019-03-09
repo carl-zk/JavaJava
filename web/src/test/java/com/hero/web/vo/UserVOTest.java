@@ -1,5 +1,6 @@
 package com.hero.web.vo;
 
+import com.hero.web.support.validator.ContainerSize;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -7,7 +8,10 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -38,5 +42,33 @@ public class UserVOTest {
 
         constraintViolations = validator.validate(vo, UserVO.ValidationName.class);
         assertEquals(0, constraintViolations.size());
+    }
+
+    @Test
+    public void containerSizeTest() {
+        InnerVO innerVO = new InnerVO();
+        List<String> list = new LinkedList<>();
+        list.add("a");
+        innerVO.setList(list);
+        Set<ConstraintViolation<InnerVO>> constraintViolations = validator.validate(innerVO);
+        System.out.println(constraintViolations.size());
+        constraintViolations.iterator().forEachRemaining(x -> System.out.println(x.getMessage()));
+    }
+
+
+    class InnerVO {
+
+/*        @ContainerSize(max = 0, message = "max length is 0")
+        @ContainerSize(isNullable = false, message = "must not null")*/
+        @Size(max = 0)
+        private List<String> list;
+
+        public List<String> getList() {
+            return list;
+        }
+
+        public void setList(List<String> list) {
+            this.list = list;
+        }
     }
 }

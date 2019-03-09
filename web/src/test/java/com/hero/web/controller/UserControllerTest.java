@@ -23,10 +23,18 @@ public class UserControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void listUsers() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/api/v1/users").accept(MediaType.APPLICATION_JSON_UTF8))
+    public void getUser() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/api/v1/user/1").accept(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void listPartUsersTest() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/api/v1/users").accept(MediaType.APPLICATION_JSON_UTF8)
+                .param("uuids", "1,2,3"))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -39,4 +47,11 @@ public class UserControllerTest {
                 });
     }
 
+    @Test
+    public void listUsersByUUIDs() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/api/v1/users").accept(MediaType.APPLICATION_JSON_UTF8)
+                .param("uuids", "1,2,3"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 }
