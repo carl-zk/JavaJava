@@ -46,12 +46,4 @@ public class UserControllerTest {
                     System.out.println(mvcResult.getResolvedException().getMessage());
                 });
     }
-
-    @Test
-    public void listUsersByUUIDs() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/api/v1/users").accept(MediaType.APPLICATION_JSON_UTF8)
-                .param("uuids", "1,2,3"))
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
 }
