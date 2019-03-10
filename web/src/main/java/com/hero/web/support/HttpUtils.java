@@ -19,16 +19,20 @@ import org.springframework.util.Assert;
 import java.io.IOException;
 
 public class HttpUtils {
+    public static final String CONTENT_TYPE = "application/json; charset=UTF-8";
     private static CloseableHttpClient httpClient;
 
     static {
         RequestConfig requestConfig = RequestConfig.custom()
-                .setConnectTimeout(5 * 1000)
-                .setSocketTimeout(5 * 1000)
+                .setConnectTimeout(10 * 1000)
+                .setSocketTimeout(10 * 1000)
                 .setCookieSpec(CookieSpecs.STANDARD)
                 .build();
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
-        cm.setMaxTotal(200);
+        cm.setDefaultMaxPerRoute(100);
+        cm.setMaxTotal(300);
+        cm.setValidateAfterInactivity(1000);
+
         httpClient = HttpClientBuilder.create()
                 .setDefaultRequestConfig(requestConfig)
                 .setConnectionManager(cm)
@@ -39,7 +43,7 @@ public class HttpUtils {
     public static JSONObject get(String url, Header... headers) throws IOException {
         HttpGet httpGet = new HttpGet(url);
         httpGet.setHeaders(headers);
-        httpGet.addHeader("Content-Type", "application/json");
+        httpGet.addHeader("Content-Type", CONTENT_TYPE);
         CloseableHttpResponse response = httpClient.execute(httpGet);
         return extractJsonFromResponse(response);
     }
@@ -48,7 +52,7 @@ public class HttpUtils {
         Assert.notNull(body, "body can't be null.");
         HttpPost httpPost = new HttpPost(url);
         httpPost.setHeaders(headers);
-        httpPost.addHeader("Content-Type", "application/json");
+        httpPost.addHeader("Content-Type", CONTENT_TYPE);
         StringEntity entity = new StringEntity(body.toJSONString(), ContentType.APPLICATION_JSON);
         httpPost.setEntity(entity);
         CloseableHttpResponse response = httpClient.execute(httpPost);
