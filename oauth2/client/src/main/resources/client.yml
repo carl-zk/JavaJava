@@ -1,0 +1,17 @@
+server:
+  port: 8091
+  servlet:
+    context-path: /client
+
+security:
+  oauth2:
+    client:
+      client-id: acme
+      client-secret: acmesecret
+      access-token-uri: http://localhost:8090/oauth/token
+      user-authorization-uri: http://localhost:8090/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:8090/me
+spring:
+  main:
+    allow-bean-definition-overriding: true
