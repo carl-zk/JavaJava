@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
+/**
+ * @author carl
+ */
 @EnableAutoConfiguration
 @Configuration
 @EnableOAuth2Sso
