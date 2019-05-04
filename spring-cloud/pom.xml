@@ -9,6 +9,7 @@
         <module>hello-service-core</module>
         <module>hello-service-consumer</module>
         <module>api-gateway</module>
+        <module>rabbitmq-hello</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
