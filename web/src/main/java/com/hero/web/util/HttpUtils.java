@@ -1,4 +1,4 @@
-package com.hero.web.support;
+package com.hero.web.util;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.Header;
@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
 
 import java.io.IOException;
 
-public class HttpUtils {
+public abstract class HttpUtils {
     public static final String CONTENT_TYPE = "application/json; charset=UTF-8";
     private static CloseableHttpClient httpClient;
 

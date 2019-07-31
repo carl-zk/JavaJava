@@ -1,7 +1,7 @@
 package com.hero.web.controller;
 
-import com.hero.web.support.Result;
-import com.hero.web.support.ServiceException;
+import com.hero.web.constant.Result;
+import com.hero.web.constant.ServiceException;
 import com.hero.web.vo.UserVO;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.annotation.Validated;

@@ -17,35 +17,35 @@ import java.time.format.DateTimeFormatter;
  * @author carl
  */
 public class LocalDateTimeSerializer extends StdSerializer<LocalDateTime> implements
-    ContextualSerializer {
+        ContextualSerializer {
 
-  private static final long serialVersionUID = -4814530545129095341L;
+    private static final long serialVersionUID = -4814530545129095341L;
 
-  private final String format;
+    private final String format;
 
-  @Override
-  public JsonSerializer<?> createContextual(SerializerProvider prov, BeanProperty property) {
-    LocalDateTimeFormat annotation = property.getAnnotation(LocalDateTimeFormat.class);
-    return new LocalDateTimeSerializer(annotation == null ? null : annotation.value());
-  }
-
-  @Override
-  public void serialize(LocalDateTime localDateTime, JsonGenerator gen, SerializerProvider provider)
-      throws IOException {
-    if (StringUtils.isEmpty(format)) {
-      gen.writeString(String.valueOf(Timestamp.valueOf(localDateTime).getTime()));
-    } else {
-      gen.writeString(localDateTime.format(DateTimeFormatter.ofPattern(format)));
+    @Override
+    public JsonSerializer<?> createContextual(SerializerProvider prov, BeanProperty property) {
+        LocalDateTimeFormat annotation = property.getAnnotation(LocalDateTimeFormat.class);
+        return new LocalDateTimeSerializer(annotation == null ? null : annotation.value());
     }
-  }
 
-  public LocalDateTimeSerializer() {
-    super(LocalDateTime.class);
-    this.format = null;
-  }
+    @Override
+    public void serialize(LocalDateTime localDateTime, JsonGenerator gen, SerializerProvider provider)
+            throws IOException {
+        if (StringUtils.isEmpty(format)) {
+            gen.writeString(String.valueOf(Timestamp.valueOf(localDateTime).getTime()));
+        } else {
+            gen.writeString(localDateTime.format(DateTimeFormatter.ofPattern(format)));
+        }
+    }
 
-  public LocalDateTimeSerializer(String value) {
-    super(LocalDateTime.class);
-    this.format = value;
-  }
+    public LocalDateTimeSerializer() {
+        super(LocalDateTime.class);
+        this.format = null;
+    }
+
+    public LocalDateTimeSerializer(String value) {
+        super(LocalDateTime.class);
+        this.format = value;
+    }
 }

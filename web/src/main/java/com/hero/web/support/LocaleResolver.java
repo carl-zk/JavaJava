@@ -14,26 +14,26 @@ import java.util.Locale;
 @Component
 public class LocaleResolver extends AbstractLocaleResolver {
 
-  @Override
-  public Locale resolveLocale(HttpServletRequest httpServletRequest) {
-    return resolveFromHeader(httpServletRequest);
-  }
-
-  @Override
-  public void setLocale(HttpServletRequest httpServletRequest,
-      HttpServletResponse httpServletResponse, Locale locale) {
-    LocaleContextHolder.setLocale(locale == null ? Locale.CHINA : locale);
-  }
-
-  private Locale resolveFromHeader(HttpServletRequest request) {
-    String localeStr = request.getHeader("locale");
-    for (String loc : SUPPORT_LOCALE) {
-      if (loc.equals(localeStr)) {
-        return new Locale(loc);
-      }
+    @Override
+    public Locale resolveLocale(HttpServletRequest httpServletRequest) {
+        return resolveFromHeader(httpServletRequest);
     }
-    return Locale.CHINA;
-  }
 
-  private static final String[] SUPPORT_LOCALE = {"zh_CN", "en_US"};
+    @Override
+    public void setLocale(HttpServletRequest httpServletRequest,
+                          HttpServletResponse httpServletResponse, Locale locale) {
+        LocaleContextHolder.setLocale(locale == null ? Locale.CHINA : locale);
+    }
+
+    private Locale resolveFromHeader(HttpServletRequest request) {
+        String localeStr = request.getHeader("locale");
+        for (String loc : SUPPORT_LOCALE) {
+            if (loc.equals(localeStr)) {
+                return new Locale(loc);
+            }
+        }
+        return Locale.CHINA;
+    }
+
+    private static final String[] SUPPORT_LOCALE = {"zh_CN", "en_US"};
 }

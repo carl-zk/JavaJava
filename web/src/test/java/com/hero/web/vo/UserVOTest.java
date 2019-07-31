@@ -1,6 +1,5 @@
 package com.hero.web.vo;
 
-import com.hero.web.support.validator.ContainerSize;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

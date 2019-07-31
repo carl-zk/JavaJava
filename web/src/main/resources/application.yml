@@ -1,13 +1,25 @@
 server:
-  port: 9000
+  port: 8080
 spring:
   application:
     name: web
   jackson:
     default-property-inclusion: non_null
   timezone: Asia/Shanghai
+  profiles:
+    active: ut
+logging:
+  level:
+    root: info
 
 ---
 spring:
-  profiles:
-    active: ut
+  profiles: ut
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/db
+    username: root
+    password: password
