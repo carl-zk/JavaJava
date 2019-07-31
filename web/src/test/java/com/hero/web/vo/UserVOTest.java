@@ -26,10 +26,9 @@ public class UserVOTest {
 
     @Test
     public void idIsNull() {
-        UserVO vo = new UserVO(null, "rose", LocalDateTime.now());
+        UserVO vo = new UserVO(null, "", LocalDateTime.now());
         Set<ConstraintViolation<UserVO>> constraintViolations = validator.validate(vo);
-        assertEquals(1, constraintViolations.size());
-        assertEquals("must not be null", constraintViolations.iterator().next().getMessage());
+        assertEquals(0, constraintViolations.size());
     }
 
     @Test
