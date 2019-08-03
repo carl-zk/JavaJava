@@ -1,8 +1,8 @@
 package com.hero.web.controller;
 
-import com.hero.web.constant.Result;
-import com.hero.web.constant.ServiceException;
-import com.hero.web.vo.UserVO;
+import com.hero.web.common.Result;
+import com.hero.web.common.ServiceException;
+import com.hero.web.domain.vo.UserVO;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 /**
@@ -31,10 +31,10 @@ public class UserController {
         System.out.println(LocaleContextHolder.getLocale());
         System.out.println(uuids);
 
-        UserVO userVo = new UserVO();
-        userVo.setName("小红");
-        userVo.setLastLoginAt(LocalDateTime.now());
-        return Result.success(userVo);
+        UserVO userVO = new UserVO();
+        userVO.setName("小红");
+        userVO.setLastLoginAt(Instant.now());
+        return Result.success(userVO);
     }
 
     @GetMapping("/v1/user/{uuid}")

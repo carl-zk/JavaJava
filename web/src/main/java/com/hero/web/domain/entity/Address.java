@@ -1,4 +1,4 @@
-package com.hero.web.entity;
+package com.hero.web.domain.entity;
 
 import lombok.Data;
 

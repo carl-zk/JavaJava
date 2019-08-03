@@ -14,8 +14,6 @@ import java.util.TimeZone;
 @Slf4j
 @Component
 public class AppLifecycle implements ServletContextListener {
-
-    //Logger log = LoggerFactory.getLogger(AppLifecycle.class);
     @Value("${spring.timezone}")
     private String timezone;
 

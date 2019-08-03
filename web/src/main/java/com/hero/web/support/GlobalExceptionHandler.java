@@ -1,11 +1,11 @@
 package com.hero.web.support;
 
-import com.hero.web.constant.Result;
-import com.hero.web.constant.ServiceException;
+import com.hero.web.common.Result;
+import com.hero.web.common.ServiceException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
@@ -13,16 +13,18 @@ import javax.validation.ConstraintViolationException;
 /**
  * @author carl
  */
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ServiceException.class)
-    public ResponseEntity<Result> defaultHandler(ServiceException ex) {
-        return new ResponseEntity<>(Result.error(ex.getErrorCode(), ex.getMessage()), HttpStatus.OK);
+    @ResponseStatus(HttpStatus.OK)
+    public Result defaultHandler(ServiceException ex) {
+        return Result.error(ex.getErrorCode(), ex.getMessage());
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<Result> defaultHandler(ConstraintViolationException ex) {
-        return new ResponseEntity<>(Result.error(400, ex.getMessage()), HttpStatus.BAD_REQUEST);
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Result defaultHandler(ConstraintViolationException ex) {
+        return Result.error(400, ex.getMessage());
     }
 }

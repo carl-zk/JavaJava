@@ -1,6 +1,6 @@
 package com.hero.web.repository;
 
-import com.hero.web.entity.User;
+import com.hero.web.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

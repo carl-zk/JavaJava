@@ -1,5 +1,8 @@
-package com.hero.web.constant;
+package com.hero.web.common;
 
+/**
+ * @author carl
+ */
 public class ServiceException extends RuntimeException {
     private int errorCode;
 

@@ -1,4 +1,4 @@
-package com.hero.web.vo;
+package com.hero.web.domain.vo;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -8,14 +8,14 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
-public class UserVOTest {
+public class UserVoTest {
     private static Validator validator;
 
     @BeforeClass
@@ -26,14 +26,14 @@ public class UserVOTest {
 
     @Test
     public void idIsNull() {
-        UserVO vo = new UserVO(null, "", LocalDateTime.now());
+        UserVO vo = new UserVO(null, "", Instant.now());
         Set<ConstraintViolation<UserVO>> constraintViolations = validator.validate(vo);
         assertEquals(0, constraintViolations.size());
     }
 
     @Test
     public void groupTest() {
-        UserVO vo = new UserVO(null, "rose", LocalDateTime.now());
+        UserVO vo = new UserVO(null, "rose", Instant.now());
         Set<ConstraintViolation<UserVO>> constraintViolations = validator.validate(vo, UserVO.ValidationId.class);
         assertEquals(1, constraintViolations.size());
         assertEquals("must not be null", constraintViolations.iterator().next().getMessage());
@@ -56,8 +56,8 @@ public class UserVOTest {
 
     class InnerVO {
 
-/*        @ContainerSize(max = 0, message = "max length is 0")
-        @ContainerSize(isNullable = false, message = "must not null")*/
+        /*        @ContainerSize(max = 0, message = "max length is 0")
+                @ContainerSize(isNullable = false, message = "must not null")*/
         @Size(max = 0)
         private List<String> list;
 

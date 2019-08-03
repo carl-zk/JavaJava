@@ -1,6 +1,10 @@
-package com.hero.web.entity;
+package com.hero.web.domain.entity;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -8,7 +12,11 @@ import javax.persistence.Embeddable;
 /**
  * @author carl
  */
-@Data
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Embeddable
 public class Mobile {
     @Column(length = 10)

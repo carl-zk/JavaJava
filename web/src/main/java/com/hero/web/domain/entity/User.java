@@ -1,6 +1,10 @@
-package com.hero.web.entity;
+package com.hero.web.domain.entity;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -10,7 +14,11 @@ import javax.persistence.ManyToOne;
 /**
  * @author carl
  */
-@Data
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class User extends BaseEntity {
     @Column(length = 100)

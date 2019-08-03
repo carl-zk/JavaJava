@@ -1,8 +1,7 @@
 package com.hero.web.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.hero.web.vo.UserVO;
-import org.apache.http.client.fluent.Request;
+import com.hero.web.domain.vo.UserVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.io.IOException;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -48,10 +45,5 @@ public class UserControllerIT {
                 .andExpect(mvcResult -> {
                     System.out.println(mvcResult.getResolvedException().getMessage());
                 });
-    }
-
-    @Test
-    public void test() throws IOException {
-        System.out.println(Request.Get("http://baidu.com").execute().returnContent().asString());
     }
 }

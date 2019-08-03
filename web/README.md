@@ -24,3 +24,10 @@ Controller层返回 UserVo 时，lastLoginAt 以时间戳格式返回。
 ## querydsl 
 
 ## mockito
+unit test
+
+## mapstruct
+Entity to DTO (vice versa)
+
+## failsafe
+integration test plugin
