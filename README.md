@@ -3,6 +3,12 @@
 
 # MY BEST PRACTISE
 
+## 代码模板生成器
+[https://www.jhipster.tech/](https://www.jhipster.tech/)
+
+## API 文档
+[https://docsify.js.org/#/](https://docsify.js.org/#/)
+
 ## IDEA Plugins
 [alibaba-p3c](https://github.com/alibaba/p3c/tree/master/idea-plugin)
 [sonarlint](https://plugins.jetbrains.com/plugin/7973-sonarlint)
