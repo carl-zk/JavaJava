@@ -3,6 +3,8 @@ package com.hero.web.controller;
 import com.hero.web.common.Result;
 import com.hero.web.common.ServiceException;
 import com.hero.web.domain.vo.UserVO;
+import com.hero.web.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class UserController {
+    @Autowired
+    UserService userService;
 
     @GetMapping("/v1/users")
     public Result listUsers(@RequestParam @Size(max = 1) List<String> uuids) {
@@ -43,12 +47,12 @@ public class UserController {
     }
 
     @PostMapping("/v1/user")
-    public Result createUser(@RequestBody @Validated(UserVO.ValidationName.class) UserVO userVO) {
-        return Result.success(userVO);
+    public Result createUser(@RequestBody @Validated(UserVO.WhenCreate.class) UserVO userVO) {
+        return Result.success(userService.register(userVO));
     }
 
     @PutMapping("/v1/user")
-    public Result updateUser(@RequestBody @Validated(UserVO.ValidationId.class) UserVO userVO) {
+    public Result updateUser(@RequestBody @Validated(UserVO.WhenUpdate.class) UserVO userVO) {
         return Result.success(userVO);
     }
 }

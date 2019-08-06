@@ -34,11 +34,11 @@ public class UserVoTest {
     @Test
     public void groupTest() {
         UserVO vo = new UserVO(null, "rose", Instant.now());
-        Set<ConstraintViolation<UserVO>> constraintViolations = validator.validate(vo, UserVO.ValidationId.class);
+        Set<ConstraintViolation<UserVO>> constraintViolations = validator.validate(vo, UserVO.WhenUpdate.class);
         assertEquals(1, constraintViolations.size());
         assertEquals("must not be null", constraintViolations.iterator().next().getMessage());
 
-        constraintViolations = validator.validate(vo, UserVO.ValidationName.class);
+        constraintViolations = validator.validate(vo, UserVO.WhenCreate.class);
         assertEquals(0, constraintViolations.size());
     }
 
