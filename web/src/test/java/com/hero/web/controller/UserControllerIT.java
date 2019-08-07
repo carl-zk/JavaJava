@@ -2,6 +2,7 @@ package com.hero.web.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.hero.web.H2MethodResetExtension;
+import com.hero.web.H2Utils;
 import com.hero.web.IntegrationTest;
 import com.hero.web.domain.dto.UserDTO;
 import com.hero.web.domain.vo.UserVO;
@@ -67,5 +68,11 @@ public class UserControllerIT {
         UserDTO userDTO = userService.register(UserVO.builder().name("小米").build());
         assertNotNull(userDTO.getId());
         System.out.println(userDTO.getId());
+    }
+
+    @Test
+    public void testH2() {
+        //H2Utils.initDb();
+        H2Utils.ss();
     }
 }
