@@ -1,13 +1,16 @@
 package com.hero.web.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.hero.web.H2MethodResetExtension;
 import com.hero.web.IntegrationTest;
 import com.hero.web.domain.dto.UserDTO;
 import com.hero.web.domain.vo.UserVO;
 import com.hero.web.service.UserService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -16,7 +19,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @IntegrationTest
+@ExtendWith(H2MethodResetExtension.class)
 @TestPropertySource(properties = {"logging.level.root=info"})
 public class UserControllerIT {
     @Autowired
