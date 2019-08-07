@@ -4,12 +4,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.h2.command.ddl.CreateSchema;
 import org.h2.command.ddl.DropSchema;
 import org.h2.engine.ConnectionInfo;
+import org.h2.engine.Database;
 import org.h2.engine.Engine;
 import org.h2.engine.Session;
 import org.h2.util.JdbcUtils;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * @author carl
@@ -22,8 +26,14 @@ public class H2Utils {
     private static final String PASSWORD = "password";
     private static final String DEFAULT_SCHEMA = "PUBLIC";
 
-    public void destroyDb() {
-
+    public static void destroyDb() throws SQLException {
+        Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        Statement stmt = conn.createStatement();
+        ResultSet resultSet = stmt.executeQuery("show tables");
+        while (resultSet.next()) {
+            log.info(resultSet.getString(1));
+        }
+        conn.close();
     }
 
     public static void initDb() {
@@ -41,14 +51,26 @@ public class H2Utils {
 
         Session session = Engine.getInstance().createSession(info);
 
-        session.getDatabase().getAllSchemas().forEach(x -> {
+        log.info(session.getDatabase().getName());
+
+        Database database = session.getDatabase();
+
+        database.getAllTablesAndViews(false).forEach(x -> {
+            log.info(x.getName());
+        });
+
+        database.getSchema(DEFAULT_SCHEMA).getAllTablesAndViews().forEach(x -> {
+            log.info(x.getName());
+        });
+
+/*        session.getDatabase().getAllSchemas().forEach(x -> {
             log.info("schema-------------");
             log.info(x.getName());
             log.info("tables-------------");
             x.getAllTablesAndViews().forEach(t -> {
                 log.info(t.getName());
             });
-        });
+        });*/
 
         session.close();
     }

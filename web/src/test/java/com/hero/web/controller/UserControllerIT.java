@@ -16,6 +16,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -71,8 +73,9 @@ public class UserControllerIT {
     }
 
     @Test
-    public void testH2() {
+    public void testH2() throws SQLException {
         //H2Utils.initDb();
-        H2Utils.ss();
+        //H2Utils.ss();
+        H2Utils.destroyDb();
     }
 }
