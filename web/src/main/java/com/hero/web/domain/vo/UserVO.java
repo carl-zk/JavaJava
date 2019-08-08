@@ -10,6 +10,7 @@ import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.time.Instant;
 
 /**
@@ -22,16 +23,17 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserVO {
-    @NotNull(groups = ValidationId.class)
+    @NotNull(groups = WhenUpdate.class)
+    @Null(groups = WhenCreate.class)
     private Long id;
-    @NotBlank(groups = ValidationName.class)
+    @NotBlank(groups = {WhenUpdate.class, WhenCreate.class})
     private String name;
     @LocalDateTimeFormat
     private Instant lastLoginAt;
 
-    public interface ValidationId {
+    public interface WhenUpdate {
     }
 
-    public interface ValidationName {
+    public interface WhenCreate {
     }
 }

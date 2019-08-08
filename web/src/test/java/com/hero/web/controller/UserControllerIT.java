@@ -1,26 +1,29 @@
 package com.hero.web.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.hero.web.H2EachResetExtension;
+import com.hero.web.IntegrationTest;
+import com.hero.web.domain.dto.UserDTO;
 import com.hero.web.domain.vo.UserVO;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.hero.web.service.UserService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@IntegrationTest
+@ExtendWith(H2EachResetExtension.class)
 public class UserControllerIT {
     @Autowired
     private MockMvc mvc;
+    @Autowired
+    UserService userService;
 
     @Test
     public void getUser() throws Exception {
@@ -38,12 +41,26 @@ public class UserControllerIT {
     }
 
     @Test
-    public void createUser() throws Exception {
+    public void testCreateUserWhenIdNotNull() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/api/v1/user").accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON).content(JSON.toJSONString(new UserVO(null, null, null))))
+                .contentType(MediaType.APPLICATION_JSON).content(JSON.toJSONString(new UserVO(1L, "小红", null))))
                 .andExpect(status().isBadRequest())
                 .andExpect(mvcResult -> {
                     System.out.println(mvcResult.getResolvedException().getMessage());
                 });
+    }
+
+    @Test
+    public void testCreateUser() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/api/v1/user").accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON).content(JSON.toJSONString(new UserVO(null, "小红", null))))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testCreateUser2() {
+        UserDTO userDTO = userService.register(UserVO.builder().name("小米").build());
+        assertEquals(1, userDTO.getId().intValue());
     }
 }

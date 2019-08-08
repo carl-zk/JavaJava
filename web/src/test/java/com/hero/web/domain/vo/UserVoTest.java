@@ -1,7 +1,9 @@
 package com.hero.web.domain.vo;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -13,12 +15,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith(MockitoExtension.class)
 public class UserVoTest {
     private static Validator validator;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpValidator() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
@@ -34,11 +37,11 @@ public class UserVoTest {
     @Test
     public void groupTest() {
         UserVO vo = new UserVO(null, "rose", Instant.now());
-        Set<ConstraintViolation<UserVO>> constraintViolations = validator.validate(vo, UserVO.ValidationId.class);
+        Set<ConstraintViolation<UserVO>> constraintViolations = validator.validate(vo, UserVO.WhenUpdate.class);
         assertEquals(1, constraintViolations.size());
         assertEquals("must not be null", constraintViolations.iterator().next().getMessage());
 
-        constraintViolations = validator.validate(vo, UserVO.ValidationName.class);
+        constraintViolations = validator.validate(vo, UserVO.WhenCreate.class);
         assertEquals(0, constraintViolations.size());
     }
 
