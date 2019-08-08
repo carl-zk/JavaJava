@@ -31,3 +31,6 @@ Entity to DTO (vice versa)
 
 ## failsafe
 integration test plugin
+
+## flyway
+with @RunWith(H2EachResetExtension.class) can keep db clean before start each test method

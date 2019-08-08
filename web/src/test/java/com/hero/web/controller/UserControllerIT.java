@@ -1,8 +1,7 @@
 package com.hero.web.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.hero.web.H2MethodResetExtension;
-import com.hero.web.H2Utils;
+import com.hero.web.H2EachResetExtension;
 import com.hero.web.IntegrationTest;
 import com.hero.web.domain.dto.UserDTO;
 import com.hero.web.domain.vo.UserVO;
@@ -11,21 +10,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.sql.SQLException;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @IntegrationTest
-@ExtendWith(H2MethodResetExtension.class)
-@TestPropertySource(properties = {"logging.level.root=info"})
+@ExtendWith(H2EachResetExtension.class)
 public class UserControllerIT {
     @Autowired
     private MockMvc mvc;
@@ -68,14 +61,6 @@ public class UserControllerIT {
     @Test
     public void testCreateUser2() {
         UserDTO userDTO = userService.register(UserVO.builder().name("小米").build());
-        assertNotNull(userDTO.getId());
-        System.out.println(userDTO.getId());
-    }
-
-    @Test
-    public void testH2() throws SQLException {
-        //H2Utils.initDb();
-        //H2Utils.ss();
-        H2Utils.destroyDb();
+        assertEquals(1, userDTO.getId().intValue());
     }
 }
