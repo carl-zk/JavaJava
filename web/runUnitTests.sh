@@ -1,4 +1,4 @@
 #!/bin/sh
 
-mvn clean
-mvn test
+./mvnw clean
+./mvnw test

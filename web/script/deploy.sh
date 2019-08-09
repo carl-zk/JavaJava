@@ -7,9 +7,9 @@ ROOT=${SCRIPT_DIR}/..
 
 pushd ${ROOT}
 
-mvn clean
-mvn compile
-mvn -DskipTests package
+./mvnw clean
+./mvnw compile
+./mvnw -DskipTests package
 
 mv ./target/web*.jar ./docker/app.jar
 

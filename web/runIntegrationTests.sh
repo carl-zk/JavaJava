@@ -1,5 +1,5 @@
 #!/bin/sh
 
-mvn clean
-mvn -DskipTests package
-mvn failsafe:integration-test
+./mvnw clean
+./mvnw -DskipTests package
+./mvnw failsafe:integration-test
