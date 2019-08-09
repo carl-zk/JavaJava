@@ -42,7 +42,7 @@ public class UserService {
         return userMapper.toUserDto(userRepository.getOne(id));
     }
 
-    public List<UserDTO> getUsersByUuids(List<String> uuids, Pageable pageable) {
-        return userMapper.toUserDtos(userRepository.findAllByUuid(uuids, pageable));
+    public List<UserDTO> getUsersByUuids(List<String> uuids) {
+        return userMapper.toUsers(userRepository.findAllByUuidIn(uuids));
     }
 }

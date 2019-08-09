@@ -32,7 +32,7 @@ public class UserController {
     public Result listUsers(@RequestParam @Size(max = 10) List<String> uuids,
                             @RequestParam(defaultValue = "0") Integer page,
                             @RequestParam(defaultValue = "10") Integer size) {
-        return Result.success(userService.getUsersByUuids(uuids, PageRequest.of(page, size)));
+        return Result.success(userService.getUsersByUuids(uuids));
     }
 
     @GetMapping("/user/{id}")
