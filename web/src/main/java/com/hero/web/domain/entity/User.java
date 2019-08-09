@@ -22,6 +22,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class User extends BaseEntity {
     @Column(length = 100)
+    private String uuid;
+    @Column(length = 100)
     private String name;
     @Embedded
     private Mobile mobile;

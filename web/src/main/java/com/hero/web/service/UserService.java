@@ -7,8 +7,11 @@ import com.hero.web.domain.mapper.UserMapper;
 import com.hero.web.domain.vo.UserVO;
 import com.hero.web.repository.CompanyRepository;
 import com.hero.web.repository.UserRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author carl
@@ -33,5 +36,13 @@ public class UserService {
         User user = userMapper.toUser(userVO);
         userRepository.save(user);
         return userMapper.toUserDto(user);
+    }
+
+    public UserDTO getUser(Long id) {
+        return userMapper.toUserDto(userRepository.getOne(id));
+    }
+
+    public List<UserDTO> getUsersByUuids(List<String> uuids, Pageable pageable) {
+        return userMapper.toUserDtos(userRepository.findAllByUuid(uuids, pageable));
     }
 }

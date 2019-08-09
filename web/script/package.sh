@@ -7,6 +7,15 @@ ROOT=${SCRIPT_DIR}/..
 
 pushd ${ROOT}
 
-mvn clean & mvn compile & mvn package
+mvn clean
+mvn compile
+mvn -DskipTests package
 
+mv ./target/web*.jar ./docker/app.jar
+
+pushd ./docker
+
+docker build -t app:latest .
+
+popd
 popd

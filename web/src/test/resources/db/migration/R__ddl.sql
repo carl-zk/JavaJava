@@ -7,6 +7,7 @@ CREATE TABLE `user` (
   `version` int(11) NOT NULL,
   `country_code` varchar(10) DEFAULT NULL,
   `number` varchar(50) DEFAULT NULL,
+  `uuid` varchar(100) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `company_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)

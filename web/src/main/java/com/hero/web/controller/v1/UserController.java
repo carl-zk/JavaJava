@@ -1,11 +1,10 @@
-package com.hero.web.controller;
+package com.hero.web.controller.v1;
 
 import com.hero.web.common.Result;
-import com.hero.web.common.ServiceException;
 import com.hero.web.domain.vo.UserVO;
 import com.hero.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Size;
-import java.time.Instant;
 import java.util.List;
 
 /**
@@ -25,33 +23,29 @@ import java.util.List;
  */
 @Validated
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/v1/users")
-    public Result listUsers(@RequestParam @Size(max = 1) List<String> uuids) {
-        System.out.println(LocaleContextHolder.getLocale());
-        System.out.println(uuids);
-
-        UserVO userVO = new UserVO();
-        userVO.setName("小红");
-        userVO.setLastLoginAt(Instant.now());
-        return Result.success(userVO);
+    @GetMapping("/users")
+    public Result listUsers(@RequestParam @Size(max = 10) List<String> uuids,
+                            @RequestParam(defaultValue = "0") Integer page,
+                            @RequestParam(defaultValue = "10") Integer size) {
+        return Result.success(userService.getUsersByUuids(uuids, PageRequest.of(page, size)));
     }
 
-    @GetMapping("/v1/user/{uuid}")
-    public Result getUser(@PathVariable String uuid) {
-        throw new ServiceException(600, "no such user");
+    @GetMapping("/user/{id}")
+    public Result getUser(@PathVariable Long id) {
+        return Result.success(userService.getUser(id));
     }
 
-    @PostMapping("/v1/user")
+    @PostMapping("/user")
     public Result createUser(@RequestBody @Validated(UserVO.WhenCreate.class) UserVO userVO) {
         return Result.success(userService.register(userVO));
     }
 
-    @PutMapping("/v1/user")
+    @PutMapping("/user")
     public Result updateUser(@RequestBody @Validated(UserVO.WhenUpdate.class) UserVO userVO) {
         return Result.success(userVO);
     }

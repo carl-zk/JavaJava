@@ -18,6 +18,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class UserDTO {
     private Long id;
+    private String uuid;
     private String name;
     private MobileDTO mobile;
     private CompanyDTO company;

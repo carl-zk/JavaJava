@@ -29,14 +29,14 @@ public class UserVoTest {
 
     @Test
     public void idIsNull() {
-        UserVO vo = new UserVO(null, "", Instant.now());
+        UserVO vo = new UserVO(null, "", "", Instant.now());
         Set<ConstraintViolation<UserVO>> constraintViolations = validator.validate(vo);
         assertEquals(0, constraintViolations.size());
     }
 
     @Test
     public void groupTest() {
-        UserVO vo = new UserVO(null, "rose", Instant.now());
+        UserVO vo = new UserVO(null, "uuid", "小明", Instant.now());
         Set<ConstraintViolation<UserVO>> constraintViolations = validator.validate(vo, UserVO.WhenUpdate.class);
         assertEquals(1, constraintViolations.size());
         assertEquals("must not be null", constraintViolations.iterator().next().getMessage());
