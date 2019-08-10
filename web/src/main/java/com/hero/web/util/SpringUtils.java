@@ -1,21 +1,21 @@
-package com.hero.common;
+package com.hero.web.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-
 /**
- * Created by hero on 16-5-21.
+ * @author carl
  */
-public class Registry implements ApplicationContextAware {
+public class SpringUtils implements ApplicationContextAware {
     private static ApplicationContext ctx;
 
+    @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         ctx = applicationContext;
     }
 
-    public static Object getBean(String beanName){
+    public static Object getBean(String beanName) {
         return ctx.getBean(beanName);
     }
 
@@ -30,5 +30,4 @@ public class Registry implements ApplicationContextAware {
     public static ApplicationContext getContext() {
         return ctx;
     }
-
 }

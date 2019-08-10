@@ -7,8 +7,10 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.Collection;
 
+/**
+ * @author carl
+ */
 public class ContainerSizeValidator implements ConstraintValidator<ContainerSize, Collection> {
-
     private boolean isNullable;
     private int min;
     private int max;

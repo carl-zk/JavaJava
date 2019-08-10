@@ -14,6 +14,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Version;
+import java.io.Serializable;
 import java.time.Instant;
 
 /**
@@ -23,7 +24,9 @@ import java.time.Instant;
 @Setter
 @MappedSuperclass
 @JsonIgnoreProperties(value = {"version", "createdAt", "updatedAt", "deleted"})
-public class BaseEntity {
+public class BaseEntity implements Serializable {
+    private static final long serialVersionUID = -4754786072382361976L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
