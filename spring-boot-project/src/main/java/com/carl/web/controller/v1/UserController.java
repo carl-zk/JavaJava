@@ -46,6 +46,6 @@ public class UserController {
 
     @PutMapping("/user")
     public Result updateUser(@RequestBody @Validated(UserVO.WhenUpdate.class) UserVO userVO) {
-        return Result.success(userVO);
+        return Result.success(userService.updateUser(userVO));
     }
 }

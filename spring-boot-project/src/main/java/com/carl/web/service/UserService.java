@@ -44,4 +44,10 @@ public class UserService {
     public List<UserDTO> getUsersByUuids(List<String> uuids) {
         return userMapper.toUsers(userRepository.findAllByUuidIn(uuids));
     }
+
+    public UserDTO updateUser(UserVO userVO) {
+        User user = userRepository.getOne(userVO.getId());
+        userMapper.updateUser(userVO, user);
+        return userMapper.toUserDto(userRepository.save(user));
+    }
 }
