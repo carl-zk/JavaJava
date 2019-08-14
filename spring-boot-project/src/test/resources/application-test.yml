@@ -6,8 +6,7 @@ spring:
   application:
     name: web
   jackson:
-    default-property-inclusion: non_null
-  timezone: Asia/Shanghai
+    default-property-inclusion: always
   jpa:
     database: h2
     hibernate:
@@ -25,6 +24,7 @@ spring:
       settings:
         trace: true
   flyway:
+    enabled: true
     baseline-on-migrate: true
 logging:
   level:

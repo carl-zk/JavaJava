@@ -14,7 +14,7 @@ import java.util.TimeZone;
 @Slf4j
 @Component
 public class AppLifecycle implements ServletContextListener {
-    @Value("${spring.timezone}")
+    @Value("${server.timezone}")
     private String timezone;
 
     @Override
