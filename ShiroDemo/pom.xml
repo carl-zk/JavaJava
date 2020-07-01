@@ -10,7 +10,7 @@
 
     <properties>
         <shiroVersion>1.4.0</shiroVersion>
-        <log4j2Version>2.8.2</log4j2Version>
+        <log4j2Version>2.13.3</log4j2Version>
     </properties>
 
     <dependencies>
