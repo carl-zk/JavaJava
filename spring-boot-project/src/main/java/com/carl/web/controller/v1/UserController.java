@@ -1,6 +1,8 @@
 package com.carl.web.controller.v1;
 
+import com.carl.web.common.ResponseResult;
 import com.carl.web.common.Result;
+import com.carl.web.domain.dto.UserDTO;
 import com.carl.web.domain.vo.UserVO;
 import com.carl.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +30,14 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/users")
-    public Result listUsers(@RequestParam @Size(max = 10) List<String> uuids,
-                            @RequestParam(defaultValue = "0") Integer page,
-                            @RequestParam(defaultValue = "10") Integer size) {
+    public Result listUsers(@RequestParam @Size(max = 10) List<String> uuids, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         return Result.success(userService.getUsersByUuids(uuids));
+    }
+
+    @GetMapping("/userss")
+    @ResponseResult
+    public List<UserDTO> listUsers(@RequestParam @Size(max = 10) List<String> uuids) {
+        return userService.getUsersByUuids(uuids);
     }
 
     @GetMapping("/user/{id}")

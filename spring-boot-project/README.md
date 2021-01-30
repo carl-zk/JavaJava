@@ -36,3 +36,7 @@ integration test plugin
 with @RunWith(H2EachResetExtension.class) can keep db clean before start each test method
 
 ## spring data jpa audit & hibernate envers
+
+## response without using Result.success()
+直接在controller中返回数据对象，使用@ResponseResult去封装返回值。
+https://mp.weixin.qq.com/s/nx-HSNbasb7SDiSISwuF4A
