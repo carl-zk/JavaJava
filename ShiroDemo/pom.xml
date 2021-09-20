@@ -9,7 +9,7 @@
     <name>shirodemo</name>
 
     <properties>
-        <shiroVersion>1.4.0</shiroVersion>
+        <shiroVersion>1.8.0</shiroVersion>
         <log4j2Version>2.8.2</log4j2Version>
     </properties>
 
