@@ -40,3 +40,7 @@ with @RunWith(H2EachResetExtension.class) can keep db clean before start each te
 ## response without using Result.success()
 直接在controller中返回数据对象，使用@ResponseResult去封装返回值。
 https://mp.weixin.qq.com/s/nx-HSNbasb7SDiSISwuF4A
+
+## read/write large Excel file
+https://www.cnblogs.com/swordfall/p/8298386.html
+https://github.com/SwordfallYeung/POIExcel
