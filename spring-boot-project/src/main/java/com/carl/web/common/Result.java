@@ -2,14 +2,20 @@ package com.carl.web.common;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
+import java.io.Serializable;
 
 /**
  * @author carl
  */
 @Getter
 @Setter
+@ToString
 @SuppressWarnings("unchecked")
-public class Result<T> {
+public class Result<T> implements Serializable {
+    private static final long serialVersionUID = -1481686592037868939L;
+
     private int code;
     private T data;
     private String message;

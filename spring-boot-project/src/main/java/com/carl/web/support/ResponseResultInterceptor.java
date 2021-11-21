@@ -29,6 +29,8 @@ public class ResponseResultInterceptor implements HandlerInterceptor {
             } else if (method.isAnnotationPresent(ResponseResult.class)) {
                 request.setAttribute(RESPONSE_RESULT_ANNOTATION, method.getAnnotation(ResponseResult.class));
             }
+            // 默认封装 controller 返回值
+            request.setAttribute(RESPONSE_RESULT_ANNOTATION, RESPONSE_RESULT_ANNOTATION);
         }
         return true;
     }

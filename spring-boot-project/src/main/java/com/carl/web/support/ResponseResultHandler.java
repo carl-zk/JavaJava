@@ -1,6 +1,5 @@
 package com.carl.web.support;
 
-import com.carl.web.common.ResponseResult;
 import com.carl.web.common.Result;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -23,12 +22,14 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        ResponseResult responseResult = (ResponseResult) request.getAttribute(ResponseResultInterceptor.RESPONSE_RESULT_ANNOTATION);
-        return responseResult != null;
+        return request.getAttribute(ResponseResultInterceptor.RESPONSE_RESULT_ANNOTATION) != null;
     }
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
+        if (o instanceof Result) {
+            return o;
+        }
         return Result.success(o);
     }
 }
