@@ -25,3 +25,8 @@ spring:
 logging:
   level:
     root: info
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    url: /doc/openapi.json

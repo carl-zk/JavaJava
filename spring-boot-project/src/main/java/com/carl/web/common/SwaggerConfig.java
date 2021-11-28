@@ -1,3 +1,4 @@
+/*
 package com.carl.web.common;
 
 import org.springframework.context.annotation.Bean;
@@ -15,9 +16,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+*/
 /**
  * @author carl
- */
+ *//*
+
 @Configuration
 @EnableOpenApi
 public class SwaggerConfig {
@@ -35,9 +38,11 @@ public class SwaggerConfig {
 
     }
 
-    /**
+    */
+/**
      * 设置授权信息
-     */
+     *//*
+
     private List<SecurityScheme> securitySchemes() {
         List<SecurityScheme> securitySchemes = new ArrayList<>();
         securitySchemes.add(HttpAuthenticationScheme.BASIC_AUTH_BUILDER.name("jwt").build());
@@ -60,4 +65,4 @@ public class SwaggerConfig {
     private SecurityContext securityContext() {
         return SecurityContext.builder().securityReferences(securityReferences()).forPaths(PathSelectors.any()).build();
     }
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package com.carl.web.common;
 
 import org.springframework.context.annotation.Bean;
@@ -10,9 +11,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+*/
 /**
  * @author carl
- */
+ *//*
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -55,3 +58,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new InMemoryUserDetailsManager(user);
     }
 }
+*/
