@@ -48,7 +48,7 @@ public class UserController {
 
     @PostMapping("/user")
 //    @ApiOperation("创建用户")
-    public Result createUser(@RequestBody @Validated(UserVO.WhenCreate.class) UserVO userVO) {
+    public Result createUser(@RequestBody @com.example.validator.core.Validated UserVO userVO) {
         return Result.success(userService.register(userVO));
     }
 

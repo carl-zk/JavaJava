@@ -22,6 +22,8 @@ spring:
     enabled: true
   main:
     allow-bean-definition-overriding: true
+  messages:
+    basename: msg-validators
 logging:
   level:
     root: info

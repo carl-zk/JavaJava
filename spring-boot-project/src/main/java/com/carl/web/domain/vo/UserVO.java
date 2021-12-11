@@ -29,8 +29,16 @@ public class UserVO {
     private String uuid;
     @NotBlank(groups = {WhenUpdate.class, WhenCreate.class})
     private String name;
+    private Integer age;
     @LocalDateTimeFormat
     private Instant lastLoginAt;
+
+    public UserVO(Long id, String uuid, String name, Instant lastLoginAt) {
+        this.id = id;
+        this.uuid = uuid;
+        this.name = name;
+        this.lastLoginAt = lastLoginAt;
+    }
 
     public interface WhenUpdate {
     }

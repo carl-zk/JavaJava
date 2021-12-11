@@ -1,0 +1,26 @@
+{
+  "validators": {
+    "UserController.createUser": [
+      "name-required",
+      "age-0-150"
+    ]
+  },
+  "rules": [
+    {
+      "id": "name-required",
+      "expression": "name != null",
+      "messageId": "required",
+      "messageArgs": [
+        "姓名"
+      ]
+    },
+    {
+      "id": "age-0-150",
+      "expression": "age > 0 && age < 150",
+      "messageId": "age-check",
+      "messageArgs": [
+        "年龄", "(0, 150)"
+      ]
+    }
+  ]
+}
