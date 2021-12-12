@@ -1,10 +1,6 @@
 package com.carl.web.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -35,6 +31,7 @@ public class User extends BaseEntity {
     @Embedded
     private Mobile mobile;
 
+    @ToString.Exclude
     @NotAudited
     @ManyToOne
     private Company company;

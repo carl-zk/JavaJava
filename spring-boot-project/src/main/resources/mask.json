@@ -1,0 +1,20 @@
+{
+  "entities": [
+    {
+      "entity": "com.carl.web.domain.dto.UserDTO",
+      "fields": {
+        "nameMasker": [
+          "name"
+        ]
+      }
+    },
+    {
+      "entity": "com.carl.web.domain.dto.AddressDTO",
+      "fields": {
+        "addressMasker": [
+          "street"
+        ]
+      }
+    }
+  ]
+}

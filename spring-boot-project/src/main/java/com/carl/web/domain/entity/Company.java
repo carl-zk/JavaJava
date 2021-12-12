@@ -1,11 +1,9 @@
 package com.carl.web.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -25,6 +23,8 @@ public class Company extends BaseEntity {
     @Embedded
     private Address address;
 
+    @JsonIgnore
+    @ToString.Exclude
     @OneToMany
     private List<User> employees;
 }

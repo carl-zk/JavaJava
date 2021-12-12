@@ -8,6 +8,7 @@ import com.carl.web.domain.vo.UserVO;
 import com.carl.web.service.UserService;
 /*import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;*/
+import com.example.mask.core.MaskHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    MaskHandler maskHandler;
 
     @GetMapping("/users")
 //    @ApiOperation(value = "用户列表")
@@ -37,7 +40,9 @@ public class UserController {
     @ResponseResult
 //    @ApiOperation("用户列表2")
     public List<UserDTO> listUsers(@RequestParam @Size(max = 10) List<String> uuids) {
-        return userService.getUsersByUuids(uuids);
+        List<UserDTO> users = userService.getUsersByUuids(uuids);
+        System.out.println(maskHandler.writeValueAsString(users));
+        return users;
     }
 
     @GetMapping("/user/{id}")

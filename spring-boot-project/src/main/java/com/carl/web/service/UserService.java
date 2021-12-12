@@ -41,6 +41,7 @@ public class UserService {
         return userMapper.toUserDto(userRepository.getOne(id));
     }
 
+    @Transactional
     public List<UserDTO> getUsersByUuids(List<String> uuids) {
         return userMapper.toUsers(userRepository.findAllByUuidIn(uuids));
     }

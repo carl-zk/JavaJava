@@ -41,7 +41,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public Result defaultHandler(ValidationException ex) {
+    public Result defaultHandler(Throwable ex) {
         LOG.error("server error", ex);
         return Result.error(500, ex.getMessage());
     }
